@@ -19,7 +19,7 @@ import com.webauth.tools.WebAuthBaseTest;
 public class TestLogin extends WebAuthBaseTest {
 	public static String publicKeyStr = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCtGQvj57TW+zPcHcLFRf90XT4N20PXvufEqcCNjT3+GZoCbuidDrbQWbx/ZIob0RYZ7pLwzOAJjQ6Ace1gAdCAPLrrglGxAcy3ZP1vMipsSSTpdMdGW7n8llqJ4OLeg+ZjZdiB+0AaBH6vigDhSRwRd4PR/zDoWJyqkkbncxe7NQIDAQAB";
 	public static String privateKeyStr = "MIICdAIBADANBgkqhkiG9w0BAQEFAASCAl4wggJaAgEAAoGBAJu6syab85kPXE7h3AtkrkyifrlJbN7rpjnPfR/HLUzyUhStHmzdnM7tgl+NFFlB0KOvBEQ2Gp7RoF2ZjKk3+2hwdnme8v0cdnV+ZvtfaPU8aAA/nn1dUA6WHbBpDA+Refm8BRdKQWhFE2UFpYChyuYs/KLll2DGZRcTqOykbgRpAgMBAAECfy7W+Quj3KEs/Za8WHMU1Vg3h+YzL4vdVSIORpRIVFfQit+tMnmMLp4O0ifrRzORmC+jdKUPoPIkGxgMF0LOk89bgc2wsU0lSuT/UnW9QawHvcF7r0lQg2UBwrPiAMR0YXP2DbMeWoKNv/ynBMg7sAjSyh/wZ2Em7uKjTBEhEcUCQQDzv1oySAPj5H5+HWYu+qJJ56J1U9rSzMGTm+GZSs7BFCVa1JJk/HwzSEkxi3JlCE/QvhCPEKr8zlM01gqN9NE/AkEAo46xDe1+vuhF1FivlR0qGQYQk6HXvQyUbGGG2rUeC7/nMPXNd2DBKDOzbQSpqOmX/Gn2+wCp9xhNm7lEaSMYVwJBAJ3XMQpUdihyQ7NZSF1tsgAXvq0pkw9kxonWrL1+ouqHKDVsaCx7D9aJndQ2j+p6+mybV8+9JGy3E0youob4nTMCQDjEvymBZDuo7QvOGGteKw1ycHB9fR8N7bpMg30H3jzfx8PTnRQxTfnBMCbHtod9RJaExQfL7DJqig1h2Z/QYZMCQHlU7SvrEmiIvhSer8DeeTEPyk71ciDa2s8eo5qkPHzlVE8Q/SPtxVnr2o235bX8VELqPYo+zzE575ffLQ/VFnY=";
-	public static String desKeyStr = "kXywNN83L8jIp5h640ZR0OMCcyrTUldn";
+	public static String desKeyStr = "SfjQziYTwviwl3xnkeY4cBp85gKhMf5z";
 	public static String pwdEncrypt = "3DESMD5";
 	public static String oldPwdEncrypt = "RSAMD5";
 	public static String newPwdEncrypt = "RSAMD5";
@@ -50,13 +50,14 @@ public class TestLogin extends WebAuthBaseTest {
 	public static void doRegister() {
 		HashMap<String, Object> map = new HashMap<>();
 		// /13656655336
-		map.put("account", "13355667780");
+		map.put("account", "13355667777");
 		map.put("accountType", "1");
-		map.put("email", "yangmi@163.com");
-		map.put("uuid", "66778899");
+		map.put("email", "yangmi@126.com");
+		map.put("uuid", BASE_UUID);
+		map.put("appid", "66778899");
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("123456", pwdEncrypt));
-
+		map.put("msgVerifyCode", "61280659");
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
 				.setUrl(BASE_URL + "app/userAccount/doRegister").setRequestBody(getRequestBody(map))
 				.doHttp(String.class);
@@ -66,12 +67,12 @@ public class TestLogin extends WebAuthBaseTest {
 	public static void doLogin() {
 		HashMap<String, Object> map = new HashMap<>();
 		// /13656655336
-		map.put("account", "13355667766");
+		map.put("account", "13355667777");
 		map.put("accountType", "1");
 		map.put("appId", "1000");
 		map.put("uuid", BASE_UUID);
-		map.put("pwdEncrypt", oldPwdEncrypt);
-		map.put("pwd", getPassWord("123456", oldPwdEncrypt));
+		map.put("pwdEncrypt", pwdEncrypt);
+		map.put("pwd", getPassWord("123456", pwdEncrypt));
 		map.put("termType", "1");
 		// map.put("msgVerifyCode", "21750736");
 		// .setCookieSavePath(BASE_COOKIE_PATH)

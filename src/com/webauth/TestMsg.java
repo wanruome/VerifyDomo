@@ -33,10 +33,10 @@ public class TestMsg extends WebAuthBaseTest {
 		// /13656655336
 		// map.put("userId", "13355667788");
 		// map.put("userId", );
-		map.put("msgFunction", "3");
+		map.put("msgFunction", "1");
 		map.put("uuid", BASE_UUID);
 
-		map.put("msgAddr", "13355667766");
+		map.put("msgAddr", "13355667777");
 		// HashMap<String, String> headers = new HashMap<>();
 		// headers.put("JSESSIONID", "cc6ae670-db67-449d-a094-bfc96ef7c352");
 		// headers.put("cookie", "JSESSIONID=851d812e-5cb2-48c1-9629-4f76a9e2043a");
