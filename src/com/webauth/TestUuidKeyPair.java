@@ -20,7 +20,7 @@ public class TestUuidKeyPair extends WebAuthBaseTest {
 		HashMap<String, Object> map = new HashMap<>();
 		// /13656655336
 		map.put("uuid", BASE_UUID);
-		map.put("keyType", "3DES");
+		map.put("keyType", "RSA");
 		// map.put("accountNo", "6226090000000048");
 
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
