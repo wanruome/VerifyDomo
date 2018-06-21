@@ -5,11 +5,11 @@ import java.security.NoSuchAlgorithmException;
 
 public class EncryptUtils {
 	public final static String Default_CharsetName="UTF-8";
-	public static String EncodingMD5(String data) {
-		return EncodingMD5(data,Default_CharsetName);
+	public static String encodingMD5(String data) {
+		return encodingMD5(data,Default_CharsetName);
 
 	}
-	public static String EncodingMD5(String data,String charset) {
+	public static String encodingMD5(String data,String charset) {
 		String resultData = null;
 		if (null == data || data.length() == 0) {
 			return resultData;
@@ -116,11 +116,11 @@ public class EncryptUtils {
 	// }
 	// return resultData;
 	// }
-	public static String EncodingSHA1(String data) {
-		return EncodingSHA1(data, Default_CharsetName);
+	public static String encodingSHA1(String data) {
+		return encodingSHA1(data, Default_CharsetName);
 	}
 
-	public static String EncodingSHA1(String data,String charset) {
+	public static String encodingSHA1(String data,String charset) {
 		String resultData = "";
 		if (null == data || data.length() == 0) {
 			return resultData;
@@ -168,10 +168,10 @@ public class EncryptUtils {
 		}
 		return resultData;
 	}
-	public static String EncodingSHA(String data) {
-		return EncodingSHA(data, Default_CharsetName);
+	public static String encodingSHA(String data) {
+		return encodingSHA(data, Default_CharsetName);
 	}
-	public static String EncodingSHA(String data,String charset) {
+	public static String encodingSHA(String data,String charset) {
 		String resultData = "";
 		if (null == data || data.length() == 0) {
 			return resultData;

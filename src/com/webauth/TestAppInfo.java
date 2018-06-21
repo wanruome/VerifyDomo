@@ -33,7 +33,7 @@ public class TestAppInfo extends WebAuthBaseTest {
 		map.put("termIphoneLimit", "6");
 		map.put("termWebLimit", "3");
 		map.put("newKillOut", "1");
-		map.put("appPwd", EncryptUtils.EncodingMD5("123456"));
+		map.put("appPwd", EncryptUtils.encodingMD5("123456"));
 		map.put("notifyUrl", "1");
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/appInfo/doAddAppInfo")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);
@@ -43,7 +43,7 @@ public class TestAppInfo extends WebAuthBaseTest {
 	public static void doModifyAppInfo() {
 		AppInfoModify appInfoModify = new AppInfoModify();
 		appInfoModify.setAppId("100009");
-		appInfoModify.setAppPwd(EncryptUtils.EncodingMD5("12345678"));
+		appInfoModify.setAppPwd(EncryptUtils.encodingMD5("12345678"));
 		// appInfoModify.setAppNewPwd(EncryptUtils.EncodingMD5("12345678"));
 		appInfoModify.setPublicKey(publicKeyStr);
 		// appInfoModify.setAppName("112332");

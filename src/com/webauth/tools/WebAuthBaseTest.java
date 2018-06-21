@@ -49,6 +49,14 @@ public class WebAuthBaseTest {
 		return requestBody;
 	}
 
+	// public static String signRequest(Map<String, String> map) {
+	// return SignTools.getSignString(map, getLoginUserInfo().getToken());
+	// }
+	public static void signRequest(Map<String, String> maps) {
+		String signStr = SignTools.getSignString(maps, getLoginUserInfo().getToken());
+		maps.put(SignTools.REQUEST_FIELD_SIGN_INFO, signStr);
+	}
+
 	public static Map<String, String> createRequestMap(boolean isLogin) {
 		Map<String, String> requestMap = new HashMap<>();
 
@@ -84,17 +92,17 @@ public class WebAuthBaseTest {
 		}
 		else if (pwdEncrypt.equals("RSAMD5")) {
 			PublicKey publicKey = RSAUtils.loadPublicKey(PUBLIC_KEY_RSA);
-			byte[] dataEnt = RSAUtils.encryptData(EncryptUtils.EncodingMD5(pwdStr).getBytes(), publicKey);
+			byte[] dataEnt = RSAUtils.encryptData(EncryptUtils.encodingMD5(pwdStr).getBytes(), publicKey);
 			return Base64.encode(dataEnt);
 		}
 		else if (pwdEncrypt.equals("3DES")) {
 			return DesUtil.encryptString(pwdStr, PUBLIC_KEY_3DES);
 		}
 		else if (pwdEncrypt.equals("3DESMD5")) {
-			return DesUtil.encryptString(EncryptUtils.EncodingMD5(pwdStr), PUBLIC_KEY_3DES);
+			return DesUtil.encryptString(EncryptUtils.encodingMD5(pwdStr), PUBLIC_KEY_3DES);
 		}
 		else if (pwdEncrypt.equals("MD5")) {
-			return EncryptUtils.EncodingMD5(pwdStr);
+			return EncryptUtils.encodingMD5(pwdStr);
 		}
 		else {
 			return null;

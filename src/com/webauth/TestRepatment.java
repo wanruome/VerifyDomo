@@ -23,7 +23,9 @@ public class TestRepatment extends WebAuthBaseTest {
 	// private static String BASE_PWD = "123456";
 
 	public static void main(String[] args) {
-		testBindCard();
+		// testBindCard();
+		testUnBindCard();
+		// testCallBindCardResult();
 		// testUnBindCard();
 		// logout();
 		// sendSmsCode();
@@ -52,6 +54,7 @@ public class TestRepatment extends WebAuthBaseTest {
 		map.put("idcardNo", "510265790128303");
 		map.put("name", "张三");
 		map.put("area", "河南省-洛阳市");
+		signRequest(map);
 
 		// new DataOKHttp().setPost(true).setDebug(true)
 		// .setUrl("http://127.0.0.1:8090/mobile/repayment/bindCard/15166669999")
@@ -62,9 +65,31 @@ public class TestRepatment extends WebAuthBaseTest {
 		System.out.println(data.toString());
 	}
 
+	public static void testCallBindCardResult() {
+		Map<String, String> map = createRequestMap(true);
+
+		// map.put("accountNo", "6212261202037568699");
+		map.put("sequenceNo", "100017");
+		map.put("mobileNo", "18100000000");
+		map.put("idcardNo", "510265790128303");
+		map.put("name", "张三");
+		map.put("area", "河南省-洛阳市");
+		signRequest(map);
+
+		// new DataOKHttp().setPost(true).setDebug(true)
+		// .setUrl("http://127.0.0.1:8090/mobile/repayment/bindCard/15166669999")
+		// .setRequestBody(OkHttpConfig.attachFormRequestForamtBody(map)).doHttp(String.class);
+
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
+				.setUrl(BASE_URL + "app/repayment/callBindCardResult").setRequestBody(getRequestBody(map))
+				.doHttp(String.class);
+		System.out.println(data.toString());
+	}
+
 	public static void testUnBindCard() {
 		Map<String, String> map = createRequestMap(true);
-		map.put("sequenceNo", "10000");
+		map.put("sequenceNo", "100001");
+		signRequest(map);
 
 		// new DataOKHttp().setPost(true).setDebug(true)
 		// .setUrl("http://127.0.0.1:8090/mobile/repayment/bindCard/15166669999")

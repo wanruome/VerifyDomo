@@ -174,7 +174,7 @@ public class AppInfoModify {
 			sb.append(notifyUrl);
 		}
 
-		return EncryptUtils.EncodingMD5(sb.toString());
+		return EncryptUtils.encodingMD5(sb.toString());
 	}
 
 	public String doSignInfo(String appPrivateKey) {

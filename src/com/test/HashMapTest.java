@@ -16,7 +16,7 @@ public class HashMapTest {
 		System.out.println(
 				"6IcaSytZ+crCNWLMj8a9H9gMqdkSD79U5QNEWOj8uL3rs1NxJ8uSzwbGOFpPBK6Yhd+p6nQay7IlwbaGvoCGVNcMuDyjUne28d6qvRzDXrLwh0uOBikMVQOrxKHmWVlUqIhdh4Nd14kndYR8jP7JjWrv80NijkVs+MrSpIJobNs="
 						.length());
-		System.out.println(EncryptUtils.EncodingMD5("crttime=20180506091133,mchtno=ZY555666,outBacth=ZY66669999"));
+		System.out.println(EncryptUtils.encodingMD5("crttime=20180506091133,mchtno=ZY555666,outBacth=ZY66669999"));
 		Map<String, Object> map = new HashMap<>();
 		map.put("Hidfa", "1");
 		map.put("hidasf", "2");

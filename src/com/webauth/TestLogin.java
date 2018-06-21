@@ -70,7 +70,7 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("123456", pwdEncrypt));
 		map.put("termType", "1");
-		// map.put("msgVerifyCode", "21750736");
+		map.put("msgVerifyCode", "01795438");
 		// .setCookieSavePath(BASE_COOKIE_PATH)
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doLogin")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);

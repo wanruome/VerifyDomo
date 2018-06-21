@@ -130,7 +130,7 @@ public class VerifyUtil {
 			String data = JSON.toJSONString(verifyValue);
 			logDebug("data === " + data);
 			logDebug("new String(data.getBytes(encoding)) === " + new String(data.getBytes(encoding)));
-			String sign = EncryptUtils.EncodingMD5(data);
+			String sign = EncryptUtils.encodingMD5(data);
 			String uuid = StringUtils.getUUID();
 			String dataTkey = getDataTkey(sign, uuid);
 			logDebug("dataTkey === " + dataTkey);

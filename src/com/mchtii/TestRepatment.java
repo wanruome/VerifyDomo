@@ -62,7 +62,7 @@ public class TestRepatment {
 		// /13656655336
 		map.put("mobile", BASE_MOBILE);
 		// map.put("accountNo", "6226090000000048");
-		map.put("password", EncryptUtils.EncodingMD5(BASE_PWD));
+		map.put("password", EncryptUtils.encodingMD5(BASE_PWD));
 		map.put("appType", "1");
 		map.put("deviceInfo",
 				"{\"appCode\":\"9\",\"appType\":\"1\",\"appVersion\":\"1.2.0\",\"osVersion\":\"Android 7.0\",\"phoneName\":\"HONOR KNT-AL20\"}");
@@ -239,7 +239,7 @@ public class TestRepatment {
 	public static void testSetPayPassword() {
 
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("payPassword", EncryptUtils.EncodingMD5("123456"));
+		map.put("payPassword", EncryptUtils.encodingMD5("123456"));
 		map.put("smsCode", "472036");
 
 		// OkHttpConfig.attachFormRequestForamtBody(map);13656655336
@@ -257,8 +257,8 @@ public class TestRepatment {
 	public static void testModifyPayPassword() {
 
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("payPassword", EncryptUtils.EncodingMD5("111111"));
-		map.put("oldPassword", EncryptUtils.EncodingMD5("654321"));
+		map.put("payPassword", EncryptUtils.encodingMD5("111111"));
+		map.put("oldPassword", EncryptUtils.encodingMD5("654321"));
 
 		// OkHttpConfig.attachFormRequestForamtBody(map);13656655336
 
@@ -275,7 +275,7 @@ public class TestRepatment {
 	public static void testFindPayPassword() {
 
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("payPassword", EncryptUtils.EncodingMD5("654321"));
+		map.put("payPassword", EncryptUtils.encodingMD5("654321"));
 		map.put("smsCode", "208610");
 
 		// OkHttpConfig.attachFormRequestForamtBody(map);13656655336
