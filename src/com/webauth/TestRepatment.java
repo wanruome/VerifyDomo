@@ -27,24 +27,11 @@ public class TestRepatment extends WebAuthBaseTest {
 		// testUnBindCard();
 		// testCallBindCardResult();
 		// testUnBindCard();
-		// logout();
-		// sendSmsCode();
-		// testBindCard();
-		// testGetPayInfo();
-		// testUnBindCard();
-		// testBindCardResult();
-		// testGetQrcode();
-		// testQueryOrders();
-		// testSetPayPassword();
-
-		// testQueryBindcards();
-
 		// testQueryProvinceCity();
-		// testFindPayPassword();
-		// testModifyPayPassword();
-		// testModifyNoPwdFlag();
 		// testCallQrCode();
-		testQueryOrders();
+		// testQueryOrders();
+		testDoQueryBindCards();
+		// testQueryAllCitys();
 	}
 
 	public static void testBindCard() {
@@ -103,6 +90,30 @@ public class TestRepatment extends WebAuthBaseTest {
 		signRequest(map);
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
 				.setUrl(BASE_URL + "app/repayment/doQueryOrders").setRequestBody(getRequestBody(map))
+				.doHttp(String.class);
+		System.out.println(data.toString());
+	}
+
+	public static void testDoQueryBindCards() {
+		Map<String, String> map = createRequestMap(true);
+		// map.put("cardIndex", "100010");
+		// map.put("mobileNo", "18100000000");
+		signRequest(map);
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
+				.setUrl(BASE_URL + "app/repayment/doQueryBindCards").setRequestBody(getRequestBody(map))
+				.doHttp(String.class);
+		System.out.println(data.toString());
+	}
+
+	public static void testQueryAllCitys() {
+		Map<String, String> map = createRequestMap(true);
+		// map.put("cardIndex", "100010");
+		// map.put("mobileNo", "18100000000");
+		map.put("version", "1");
+		map.put("format", "dict");
+		signRequest(map);
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
+				.setUrl(BASE_URL + "app/repayment/doQueryAllCitys").setRequestBody(getRequestBody(map))
 				.doHttp(String.class);
 		System.out.println(data.toString());
 	}
