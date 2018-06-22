@@ -6,6 +6,7 @@
 package com.webauth;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -18,7 +19,7 @@ import com.webauth.tools.WebAuthBaseTest;
 public class TestLogin extends WebAuthBaseTest {
 	public static String pwdEncrypt = "3DESMD5";
 	public static String oldPwdEncrypt = "RSAMD5";
-	public static String newPwdEncrypt = "RSAMD5";
+	public static String newPwdEncrypt = "RSA";
 
 	public static void main(String[] args) {
 		// doIndexJsp();
@@ -29,6 +30,8 @@ public class TestLogin extends WebAuthBaseTest {
 		// doModifyMobie();
 		// doModifyName();
 		// doModifyEmail();
+		// doFindPwd();
+
 	}
 
 	public static void doTest() {
@@ -53,7 +56,7 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("appid", "66778899");
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("123456", pwdEncrypt));
-		map.put("msgVerifyCode", "61280659");
+		map.put("msgVerifyCode", "70952126");
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
 				.setUrl(BASE_URL + "app/userAccount/doRegister").setRequestBody(getRequestBody(map))
 				.doHttp(String.class);
@@ -70,7 +73,7 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("123456", pwdEncrypt));
 		map.put("termType", "1");
-		map.put("msgVerifyCode", "01795438");
+		// map.put("msgVerifyCode", "78796080");
 		// .setCookieSavePath(BASE_COOKIE_PATH)
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doLogin")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);
@@ -83,18 +86,18 @@ public class TestLogin extends WebAuthBaseTest {
 	}
 
 	public static void doModifyPwd() {
-		HashMap<String, Object> map = new HashMap<>();
-		// /13656655336
-		map.put("userId", "100000");
-		map.put("uuid", "66778899");
+		Map<String, String> map = createRequestMap(true);
+
 		map.put("oldPwdEncrypt", oldPwdEncrypt);
 		map.put("newPwdEncrypt", newPwdEncrypt);
 
-		map.put("oldPwd", getPassWord("123456ABC", oldPwdEncrypt));
-		map.put("newPwd", getPassWord("123456", newPwdEncrypt));
-
-		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "userInfo/doModifyPwd")
-				.setRequestBody(getRequestBody(map)).doHttp(String.class);
+		map.put("oldPwd", getPassWord("12345678", oldPwdEncrypt));
+		map.put("newPwd", getPassWord("ABCEDFG_&^123456", newPwdEncrypt));
+		map.put("msgVerifyCode", "54091940");
+		signRequest(map);
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
+				.setUrl(BASE_URL + "app/userAccount/doModifyPwd").setRequestBody(getRequestBody(map))
+				.doHttp(String.class);
 		System.out.println(data.toString());
 	}
 
@@ -133,6 +136,20 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("authToken", "authToken");
 
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "userInfo/doModifyEmail")
+				.setRequestBody(getRequestBody(map)).doHttp(String.class);
+		System.out.println(data.toString());
+	}
+
+	public static void doFindPwd() {
+		Map<String, String> map = createRequestMap(false);
+		map.put("account", "13355667777");
+		map.put("accountType", "1");
+		map.put("newPwdEncrypt", oldPwdEncrypt);
+
+		map.put("newPwd", getPassWord("123456", oldPwdEncrypt));
+		map.put("msgVerifyCode", "32456606");
+		// signRequest(map);
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doFindPwd")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);
 		System.out.println(data.toString());
 	}

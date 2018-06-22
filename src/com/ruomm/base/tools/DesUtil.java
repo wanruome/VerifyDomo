@@ -2,6 +2,8 @@ package com.ruomm.base.tools;
 
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.Security;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -16,7 +18,10 @@ import javax.crypto.spec.DESedeKeySpec;
  * @author
  */
 public abstract class DesUtil {
-
+	static {
+		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+	}
+	private static boolean ISBC = true;
 	/**
 	 * 密钥算法
 	 *
@@ -72,11 +77,16 @@ public abstract class DesUtil {
 		try {
 			// 还原密钥
 			Key k = toKey(key);
-			Cipher cipher;
 			/**
 			 * 实例化 使用PKCS7Padding填充方式，按如下代码实现 Cipher.getInstance(CIPHER_ALGORITHM,"BC");
 			 */
-			cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+			Cipher cipher;
+			if (ISBC) {
+				cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+			}
+			else {
+				cipher = Cipher.getInstance(CIPHER_ALGORITHM, "BC");
+			}
 			// 初始化，设置为解密模式
 			cipher.init(Cipher.DECRYPT_MODE, k);
 			// 执行操作
@@ -107,7 +117,13 @@ public abstract class DesUtil {
 			/**
 			 * 实例化 使用PKCS7Padding填充方式，按如下代码实现 Cipher.getInstance(CIPHER_ALGORITHM,"BC");
 			 */
-			Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+			Cipher cipher;
+			if (ISBC) {
+				cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+			}
+			else {
+				cipher = Cipher.getInstance(CIPHER_ALGORITHM, "BC");
+			}
 			// 初始化，设置为加密模式
 			cipher.init(Cipher.ENCRYPT_MODE, k);
 			// 执行操作
@@ -133,18 +149,26 @@ public abstract class DesUtil {
 			 */
 			KeyGenerator kg;
 
-			kg = KeyGenerator.getInstance(KEY_ALGORITHM);
-
-			/**
-			 * 初始化 使用128位或192位长度密钥，按如下代码实现 kg.init(128); kg.init(192);
-			 */
-			kg.init(168);
+			// kg = KeyGenerator.getInstance(KEY_ALGORITHM);
+			//
+			// /**
+			// * 初始化 使用128位或192位长度密钥，按如下代码实现 kg.init(128); kg.init(192);
+			// */
+			// kg.init(168);
+			if (ISBC) {
+				kg = KeyGenerator.getInstance(KEY_ALGORITHM, "BC");
+				kg.init(192);
+			}
+			else {
+				kg = KeyGenerator.getInstance(KEY_ALGORITHM);
+				kg.init(168);
+			}
 			// 生成秘密密钥
 			SecretKey secretKey = kg.generateKey();
 			// 获得密钥的二进制编码形式
 			dataDes = secretKey.getEncoded();
 		}
-		catch (NoSuchAlgorithmException e) {
+		catch (NoSuchAlgorithmException | NoSuchProviderException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -172,14 +196,19 @@ public abstract class DesUtil {
 	public static String decryptString(String data, String key, String charsetName) {
 		String dataDes = null;
 		try {
-			String charset = StringUtils.isBlank(charsetName) ? "UTF-8" : charsetName;
+			String charset = StringUtils.isEmpty(charsetName) ? "UTF-8" : charsetName;
 			// 还原密钥
 			Key k = toKey(Base64.decode(key));
-			Cipher cipher;
 			/**
 			 * 实例化 使用PKCS7Padding填充方式，按如下代码实现 Cipher.getInstance(CIPHER_ALGORITHM,"BC");
 			 */
-			cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+			Cipher cipher;
+			if (ISBC) {
+				cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+			}
+			else {
+				cipher = Cipher.getInstance(CIPHER_ALGORITHM, "BC");
+			}
 			// 初始化，设置为解密模式
 			cipher.init(Cipher.DECRYPT_MODE, k);
 			// 执行操作
@@ -210,13 +239,19 @@ public abstract class DesUtil {
 	public static String encryptString(String data, String key, String charsetName) {
 		String dataDes = null;
 		try {
-			String charset = StringUtils.isBlank(charsetName) ? "UTF-8" : charsetName;
+			String charset = StringUtils.isEmpty(charsetName) ? "UTF-8" : charsetName;
 			// 还原密钥
 			Key k = toKey(Base64.decode(key));
 			/**
 			 * 实例化 使用PKCS7Padding填充方式，按如下代码实现 Cipher.getInstance(CIPHER_ALGORITHM,"BC");
 			 */
-			Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+			Cipher cipher;
+			if (ISBC) {
+				cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+			}
+			else {
+				cipher = Cipher.getInstance(CIPHER_ALGORITHM, "BC");
+			}
 			// 初始化，设置为加密模式
 			cipher.init(Cipher.ENCRYPT_MODE, k);
 			// 执行操作
@@ -229,12 +264,4 @@ public abstract class DesUtil {
 		return dataDes;
 	}
 
-	public static void main(String[] args) {
-		String key = Base64.encode(initKey());
-		String data = encryptString(
-				"咋上的花费破案发生了的辅导辅导辅导辅导辅导辅导辅导辅导辅导费劲咖啡色的空间打发时间13212132132132123132132132132132132132132132132", key, null);
-		String rData = decryptString(data, key, null);
-		System.out.println(rData);
-
-	}
 }

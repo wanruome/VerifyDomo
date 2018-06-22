@@ -28,8 +28,8 @@ public class WebAuthBaseTest {
 	public static String BASE_COOKIE_PATH = "D:\\temp\\webauth\\logincookie.txt";
 	public static String BASE_UUID = "111122223333444455556666777788889999";
 	public static String BASE_LOGIN_USER = "D:\\temp\\webauth\\loginuserinfo.txt";
-	public static String PUBLIC_KEY_3DES = "0xMc9ATsAZi/48LZPXpUN5uzjLM9FjGr";
-	public static String PUBLIC_KEY_RSA = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBU/U2REh26VkVS5J80Ct6V5vDBS2h0xKzE41Y26V2Ygd6VNmQNcq8A21zy0IfwOysH3OZqFvN0lymz0T9OPchKpr4WIdQ7PkExU/J9NLurZIfx9l2T5smz7J58XbehsL2b5k1veUR4CZWmPXBQ0C3hkUvrb+Gtz7GQmt1IAd4+QIDAQAB";
+	public static String PUBLIC_KEY_3DES = "AoyF+4BkvJtFtg5/1XWwYTFMQAs9rpfI";
+	public static String PUBLIC_KEY_RSA = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnuGM50ORkhZzP8oSyvgwcecGJXi9EyUsQjYKKXoQeXwRw75OQh4ONMx1nXPcBCkQItEYevF7VmkAeW8nTcQjYWKEXdZ9ZHE7BHVB1Yw74B9kkqS/b0SLaUjsKHpDODV1w9AmtrSs7uSVCxTUSKSE2qUu7NKrf+p+/0OZkXF6UJwIDAQAB";
 
 	public static RequestBody getRequestBody(Object bodyParameters) {
 		RequestBody requestBody = null;
