@@ -18,14 +18,14 @@ public class SignTools {
 	public static final String REQUEST_FIELD_SIGN_INFO = "signInfo";
 
 	public static String getSignString(Map<String, String> maps, String token) {
-		String value = getKeyString(maps) + token;
+		String value = getKeyString(maps) + "token=" + token;
 		return EncryptUtils.encodingMD5(value);
 	}
 
 	public static String getSignString(JSONObject jsonObject, String token) {
 		Map<String, String> maps = parseJsonToMap(jsonObject);
 		maps.remove(REQUEST_FIELD_SIGN_INFO);
-		String value = getKeyString(maps) + token;
+		String value = getKeyString(maps) + "token=" + token;
 		return EncryptUtils.encodingMD5(value);
 	}
 
@@ -37,9 +37,10 @@ public class SignTools {
 		if (StringUtils.isEmpty(signInfo)) {
 			return false;
 		}
-		jsonObject.remove(REQUEST_FIELD_SIGN_INFO);
+		// jsonObject.remove(AppConfig.REQUEST_FIELD_SIGN_INFO);
 		Map<String, String> maps = parseJsonToMap(jsonObject);
-		String value = getKeyString(maps) + token;
+		maps.remove(REQUEST_FIELD_SIGN_INFO);
+		String value = getKeyString(maps) + "token=" + token;
 		return signInfo.equals(EncryptUtils.encodingMD5(value));
 	}
 
@@ -65,14 +66,19 @@ public class SignTools {
 
 	public static String getKeyString(Map<String, String> mapValues) {
 
-		// 遍历排序后的字典，将所有参数按"key=value"格式拼接在一起
+		// 遍历排序后的字典，将所有参数按"key=value&"格式拼接在一起
 		StringBuilder sb = new StringBuilder();
 		if (null != mapValues && mapValues.size() > 0) {
 			// 先将参数以其参数名的字典序升序进行排序
 			TreeMap<String, String> treeMapValues = new TreeMap<String, String>(mapValues);
 			Set<String> keySet = treeMapValues.keySet();
 			for (String key : keySet) {
-				sb.append(treeMapValues.get(key));
+				String value = treeMapValues.get(key);
+				if (null == value || value.trim().length() <= 0) {
+					continue;
+				}
+				// sb.append(treeMapValues.get(key));
+				sb.append(key).append("=").append(value).append("&");
 			}
 		}
 		return sb.toString();

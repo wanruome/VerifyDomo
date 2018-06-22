@@ -44,7 +44,7 @@ public class WebAuthBaseTest {
 				stringBody = JSON.toJSONString(bodyParameters);
 			}
 		}
-		requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf8"), stringBody);
+		requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), stringBody);
 
 		return requestBody;
 	}
