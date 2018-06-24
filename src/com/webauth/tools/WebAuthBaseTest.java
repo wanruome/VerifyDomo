@@ -29,7 +29,7 @@ public class WebAuthBaseTest {
 	public static String BASE_UUID = "111122223333444455556666777788889999";
 	public static String BASE_LOGIN_USER = "D:\\temp\\webauth\\loginuserinfo.txt";
 	public static String PUBLIC_KEY_3DES = "AoyF+4BkvJtFtg5/1XWwYTFMQAs9rpfI";
-	public static String PUBLIC_KEY_RSA = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnuGM50ORkhZzP8oSyvgwcecGJXi9EyUsQjYKKXoQeXwRw75OQh4ONMx1nXPcBCkQItEYevF7VmkAeW8nTcQjYWKEXdZ9ZHE7BHVB1Yw74B9kkqS/b0SLaUjsKHpDODV1w9AmtrSs7uSVCxTUSKSE2qUu7NKrf+p+/0OZkXF6UJwIDAQAB";
+	public static String PUBLIC_KEY_RSA = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCL4fdfChuLXHKFsTArBUh/33thO/eN2ArAE8Xu8E0pssFTHUNstjXZsKUVqIlDlyczFGbsOzpzYpWJvpkZVe5z8oyBoeSHYYR4K9hGgHI9zvX792ohhEPnaJhbW2qFdnZ0O4hEC5c+CdIDQuiP1lz4I1paTqXQrGCMhPhaefPITwIDAQAB";
 
 	public static RequestBody getRequestBody(Object bodyParameters) {
 		RequestBody requestBody = null;

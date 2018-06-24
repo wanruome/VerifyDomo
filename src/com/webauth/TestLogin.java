@@ -24,6 +24,7 @@ public class TestLogin extends WebAuthBaseTest {
 	public static void main(String[] args) {
 		// doIndexJsp();
 		doLogin();
+		// doLogout();
 		// doTest();
 		// doRegister();
 		// doModifyPwd();
@@ -56,7 +57,7 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("appid", "66778899");
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("123456", pwdEncrypt));
-		map.put("msgVerifyCode", "70952126");
+		// map.put("msgVerifyCode", "70952126");
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
 				.setUrl(BASE_URL + "app/userAccount/doRegister").setRequestBody(getRequestBody(map))
 				.doHttp(String.class);
@@ -73,7 +74,7 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("123456", pwdEncrypt));
 		map.put("termType", "1");
-		// map.put("msgVerifyCode", "78796080");
+		map.put("msgVerifyCode", "32456606");
 		// .setCookieSavePath(BASE_COOKIE_PATH)
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doLogin")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);
@@ -146,10 +147,18 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("accountType", "1");
 		map.put("newPwdEncrypt", oldPwdEncrypt);
 
-		map.put("newPwd", getPassWord("123456", oldPwdEncrypt));
-		map.put("msgVerifyCode", "32456606");
+		map.put("newPwd", getPassWord("123654", oldPwdEncrypt));
+		map.put("msgVerifyCode", "48809484");
 		// signRequest(map);
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doFindPwd")
+				.setRequestBody(getRequestBody(map)).doHttp(String.class);
+		System.out.println(data.toString());
+	}
+
+	public static void doLogout() {
+		Map<String, String> map = createRequestMap(true);
+		signRequest(map);
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doLogout")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);
 		System.out.println(data.toString());
 	}

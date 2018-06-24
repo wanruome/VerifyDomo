@@ -1,9 +1,12 @@
 package com.ruomm.base.tools;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
- * 项目名称：工具类 类名称：StringUtils 类描述： 可用于常见字符串操作 创建人：王龙能 创建时间：2014-3-11 下午2:07:11 修改人：王龙能 修改时间：2014-3-11 下午2:07:11 修改备注：
+ * 项目名称：工具类 类名称：StringUtils 类描述： 可用于常见字符串操作 创建人：王龙能 创建时间：2014-3-11 下午2:07:11 修改人：王龙能 修改时间：2014-3-11
+ * 下午2:07:11 修改备注：
  *
  * @version
  */
@@ -122,6 +125,22 @@ public class StringUtils {
 			return (str.length() > length) ? str.substring(0, length) : str;
 		}
 
+	}
+
+	public static List<String> getListString(String arg, String split) {
+		List<String> list = new ArrayList<String>();
+		if (isEmpty(arg)) {
+			return list;
+		}
+		else {
+			String[] strings = arg.split(split);
+			for (String string : strings) {
+				if (!isEmpty(string)) {
+					list.add(string);
+				}
+			}
+		}
+		return list;
 	}
 
 }

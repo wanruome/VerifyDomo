@@ -25,12 +25,12 @@ public class TestMsg extends WebAuthBaseTest {
 		// doMsgSend();
 		// doModifyName();
 		// doModifyEmail();
+		// doMsgSend0();
 		doMsgSend1();
-		// doMsgSend2();
 		// doShiroDemo();
 	}
 
-	public static void doMsgSend1() {
+	public static void doMsgSend0() {
 		HashMap<String, Object> map = new HashMap<>();
 		// /13656655336
 		// map.put("userId", "13355667788");
@@ -48,12 +48,12 @@ public class TestMsg extends WebAuthBaseTest {
 		System.out.println(data.toString());
 	}
 
-	public static void doMsgSend2() {
+	public static void doMsgSend1() {
 		Map<String, String> map = createRequestMap(true);
 		// /13656655336
 		// map.put("userId", "13355667788");
 		// map.put("userId", );
-		map.put("msgFunction", "4");
+		map.put("msgFunction", "9");
 		map.put("uuid", BASE_UUID);
 
 		map.put("msgAddr", "13355667777");
