@@ -5,6 +5,7 @@
  */
 package com.webauth;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,13 +50,14 @@ public class TestMsg extends WebAuthBaseTest {
 	}
 
 	public static void doMsgSend1() {
+		System.out.println(new Date().getTime());
 		Map<String, String> map = createRequestMap(true);
 		// /13656655336
 		// map.put("userId", "13355667788");
 		// map.put("userId", );
 		map.put("msgFunction", "9");
 		map.put("uuid", BASE_UUID);
-
+		map.put("timeStamp", 1529942752895l + "");
 		map.put("msgAddr", "13355667799");
 		signRequest(map);
 		// HashMap<String, String> headers = new HashMap<>();
