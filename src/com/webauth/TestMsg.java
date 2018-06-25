@@ -49,7 +49,26 @@ public class TestMsg extends WebAuthBaseTest {
 	}
 
 	public static void doMsgSend1() {
-		Map<String, String> map = createRequestMap(false);
+		Map<String, String> map = createRequestMap(true);
+		// /13656655336
+		// map.put("userId", "13355667788");
+		// map.put("userId", );
+		map.put("msgFunction", "9");
+		map.put("uuid", BASE_UUID);
+
+		map.put("msgAddr", "13355667799");
+		signRequest(map);
+		// HashMap<String, String> headers = new HashMap<>();
+		// headers.put("JSESSIONID", "cc6ae670-db67-449d-a094-bfc96ef7c352");
+		// headers.put("cookie", "JSESSIONID=851d812e-5cb2-48c1-9629-4f76a9e2043a");
+
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/msg/doMsgSend")
+				.setRequestBody(getRequestBody(map)).doHttp(String.class);
+		System.out.println(data.toString());
+	}
+
+	public static void doMsgSend2() {
+		Map<String, String> map = createRequestMap(true);
 		// /13656655336
 		// map.put("userId", "13355667788");
 		// map.put("userId", );

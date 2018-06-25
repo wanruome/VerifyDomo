@@ -19,7 +19,7 @@ import com.webauth.tools.WebAuthBaseTest;
 public class TestLogin extends WebAuthBaseTest {
 	public static String pwdEncrypt = "3DESMD5";
 	public static String oldPwdEncrypt = "RSAMD5";
-	public static String newPwdEncrypt = "RSA";
+	public static String newPwdEncrypt = "RSAMD5";
 
 	public static void main(String[] args) {
 		// doIndexJsp();
@@ -73,12 +73,12 @@ public class TestLogin extends WebAuthBaseTest {
 	public static void doLogin() {
 		HashMap<String, Object> map = new HashMap<>();
 		// /13656655336
-		map.put("account", "13355667777");
+		map.put("account", "13355667799");
 		map.put("accountType", "1");
 		map.put("appId", "1000");
 		map.put("uuid", BASE_UUID);
 		map.put("pwdEncrypt", pwdEncrypt);
-		map.put("pwd", getPassWord("123456", pwdEncrypt));
+		map.put("pwd", getPassWord("111111", pwdEncrypt));
 		map.put("termType", "1");
 		// map.put("msgVerifyCode", "32456606");
 		// .setCookieSavePath(BASE_COOKIE_PATH)
@@ -99,7 +99,7 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("newPwdEncrypt", newPwdEncrypt);
 
 		map.put("oldPwd", getPassWord("12345678", oldPwdEncrypt));
-		map.put("newPwd", getPassWord("ABCEDFG_&^123456", newPwdEncrypt));
+		map.put("newPwd", getPassWord("111111", newPwdEncrypt));
 		map.put("msgVerifyCode", "54091940");
 		signRequest(map);
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
@@ -149,12 +149,12 @@ public class TestLogin extends WebAuthBaseTest {
 
 	public static void doFindPwd() {
 		Map<String, String> map = createRequestMap(false);
-		map.put("account", "13355667777");
+		map.put("account", "13355667799");
 		map.put("accountType", "1");
 		map.put("newPwdEncrypt", oldPwdEncrypt);
 
-		map.put("newPwd", getPassWord("123654", oldPwdEncrypt));
-		map.put("msgVerifyCode", "48809484");
+		map.put("newPwd", getPassWord("111111", oldPwdEncrypt));
+		map.put("msgVerifyCode", "32456606");
 		// signRequest(map);
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doFindPwd")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);

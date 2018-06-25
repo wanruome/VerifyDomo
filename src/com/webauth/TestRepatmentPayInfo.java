@@ -26,8 +26,8 @@ public class TestRepatmentPayInfo extends WebAuthBaseTest {
 		// doGetPayInfo();
 		// doSetPayPwd();
 		// doModifyPayPwd();
-		doModifyNoPwdFlag();
-		// doFindPayPwd();
+		// doModifyNoPwdFlag();
+		doFindPayPwd();
 		// testQueryAllCitys();
 	}
 
@@ -35,11 +35,11 @@ public class TestRepatmentPayInfo extends WebAuthBaseTest {
 		Map<String, String> map = createRequestMap(true);
 
 		// map.put("accountNo", "6212261202037568699");
-		map.put("accountNo", "62260900000000482");
-		map.put("mobileNo", "181000000002");
-		map.put("idcardNo", "5102657901283032");
-		map.put("name", "张三2");
-		map.put("area", "河南省-洛阳市2");
+		// map.put("accountNo", "62260900000000482");
+		// map.put("mobileNo", "181000000002");
+		// map.put("idcardNo", "5102657901283032");
+		// map.put("name", "张三2");
+		// map.put("area", "河南省-洛阳市2");
 		signRequest(map);
 
 		// new DataOKHttp().setPost(true).setDebug(true)
@@ -81,7 +81,7 @@ public class TestRepatmentPayInfo extends WebAuthBaseTest {
 		map.put("oldPayPwdEncrypt", oldPwdEncrypt);
 		map.put("newPayPwdEncrypt", newPwdEncrypt);
 
-		map.put("oldPayPwd", getPassWord("654321", oldPwdEncrypt));
+		map.put("oldPayPwd", getPassWord("123456", oldPwdEncrypt));
 		map.put("newPayPwd", getPassWord("123456", newPwdEncrypt));
 		// map.put("msgVerifyCode", "54091940");
 		signRequest(map);
@@ -94,8 +94,8 @@ public class TestRepatmentPayInfo extends WebAuthBaseTest {
 	public static void doFindPayPwd() {
 		Map<String, String> map = createRequestMap(true);
 		map.put("newPayPwdEncrypt", newPwdEncrypt);
-		map.put("newPayPwd", getPassWord("654321", newPwdEncrypt));
-		map.put("msgVerifyCode", "48809484");
+		map.put("newPayPwd", getPassWord("111111", newPwdEncrypt));
+		map.put("msgVerifyCode", "61798656");
 		signRequest(map);
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
 				.setUrl(BASE_URL + "app/repaymentPayInfo/doFindPayPwd").setRequestBody(getRequestBody(map))
