@@ -27,6 +27,8 @@ public class TestLogin extends WebAuthBaseTest {
 		// doLogout();
 		// doTest();
 		// doRegister();
+		// doModifyUserInfo();
+		// doGetUserInfo();
 		// doModifyPwd();
 		// doModifyMobie();
 		// doModifyName();
@@ -50,14 +52,18 @@ public class TestLogin extends WebAuthBaseTest {
 	public static void doRegister() {
 		HashMap<String, Object> map = new HashMap<>();
 		// /13656655336
-		map.put("account", "13355667777");
+		map.put("account", "13355667799");
 		map.put("accountType", "1");
-		map.put("email", "yangmi@126.com");
+		map.put("email", "yang@126.com");
 		map.put("uuid", BASE_UUID);
 		map.put("appid", "66778899");
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("123456", pwdEncrypt));
-		// map.put("msgVerifyCode", "70952126");
+		map.put("msgVerifyCode", "60760159");
+		map.put("idCardName", "jianli");
+		map.put("idCardNo", "410327198310091454");
+		map.put("nickName", "jianli");
+		map.put("headImg", "jianli");
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
 				.setUrl(BASE_URL + "app/userAccount/doRegister").setRequestBody(getRequestBody(map))
 				.doHttp(String.class);
@@ -74,7 +80,7 @@ public class TestLogin extends WebAuthBaseTest {
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("123456", pwdEncrypt));
 		map.put("termType", "1");
-		map.put("msgVerifyCode", "32456606");
+		// map.put("msgVerifyCode", "32456606");
 		// .setCookieSavePath(BASE_COOKIE_PATH)
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doLogin")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);
@@ -152,6 +158,34 @@ public class TestLogin extends WebAuthBaseTest {
 		// signRequest(map);
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doFindPwd")
 				.setRequestBody(getRequestBody(map)).doHttp(String.class);
+		System.out.println(data.toString());
+	}
+
+	public static void doGetUserInfo() {
+		Map<String, String> map = createRequestMap(true);
+		// /13656655336
+		// map.put("idCardName", "jianli");
+		// map.put("idCardNo", "410327198310091454");
+		// map.put("nickName", "yang");
+		// map.put("headImg", "http://www.baidu.com/");
+		signRequest(map);
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
+				.setUrl(BASE_URL + "app/userAccount/doGetUserInfo").setRequestBody(getRequestBody(map))
+				.doHttp(String.class);
+		System.out.println(data.toString());
+	}
+
+	public static void doModifyUserInfo() {
+		Map<String, String> map = createRequestMap(true);
+		// /13656655336
+		map.put("idCardName", "jianli");
+		map.put("idCardNo", "410327198310091454");
+		// map.put("nickName", "yang");
+		// map.put("headImg", "http://www.baidu.com/");
+		signRequest(map);
+		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
+				.setUrl(BASE_URL + "app/userAccount/doModifyUserInfo").setRequestBody(getRequestBody(map))
+				.doHttp(String.class);
 		System.out.println(data.toString());
 	}
 

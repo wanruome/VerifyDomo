@@ -24,11 +24,12 @@ public class WebAuthBaseTest {
 	// private static String BASE_URL = "http://127.0.0.1:8090/";
 	private static LoginUserInfo loginUserInfo = null;
 	public static String BASE_URL = "http://localhost:8080/mchtAppUserApi/";
+	// public static String BASE_URL = "http://192.168.100.66:9080/mchtAppUserApi/";
 	public static Map<String, String> headerMaps = new HashMap<>();
 	public static String BASE_COOKIE_PATH = "D:\\temp\\webauth\\logincookie.txt";
 	public static String BASE_UUID = "111122223333444455556666777788889999";
 	public static String BASE_LOGIN_USER = "D:\\temp\\webauth\\loginuserinfo.txt";
-	public static String PUBLIC_KEY_3DES = "AoyF+4BkvJtFtg5/1XWwYTFMQAs9rpfI";
+	public static String PUBLIC_KEY_3DES = "KiV2Mi+Fj6LjBOmYhmIlLB+D1QsBbR9/";
 	public static String PUBLIC_KEY_RSA = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCL4fdfChuLXHKFsTArBUh/33thO/eN2ArAE8Xu8E0pssFTHUNstjXZsKUVqIlDlyczFGbsOzpzYpWJvpkZVe5z8oyBoeSHYYR4K9hGgHI9zvX792ohhEPnaJhbW2qFdnZ0O4hEC5c+CdIDQuiP1lz4I1paTqXQrGCMhPhaefPITwIDAQAB";
 
 	public static RequestBody getRequestBody(Object bodyParameters) {
