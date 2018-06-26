@@ -29,7 +29,7 @@ public class WebAuthBaseTest {
 	public static String BASE_COOKIE_PATH = "D:\\temp\\webauth\\logincookie.txt";
 	public static String BASE_UUID = "111122223333444455556666777788889999";
 	public static String BASE_LOGIN_USER = "D:\\temp\\webauth\\loginuserinfo.txt";
-	public static String PUBLIC_KEY_3DES = "KiV2Mi+Fj6LjBOmYhmIlLB+D1QsBbR9/";
+	public static String PUBLIC_KEY_3DES = "j5dzZD0WL4nNbV1ejDJ1KomhVOmhzmJi";
 	public static String PUBLIC_KEY_RSA = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCL4fdfChuLXHKFsTArBUh/33thO/eN2ArAE8Xu8E0pssFTHUNstjXZsKUVqIlDlyczFGbsOzpzYpWJvpkZVe5z8oyBoeSHYYR4K9hGgHI9zvX792ohhEPnaJhbW2qFdnZ0O4hEC5c+CdIDQuiP1lz4I1paTqXQrGCMhPhaefPITwIDAQAB";
 
 	public static RequestBody getRequestBody(Object bodyParameters) {
@@ -55,6 +55,11 @@ public class WebAuthBaseTest {
 	// }
 	public static void signRequest(Map<String, String> maps) {
 		String signStr = SignTools.getSignString(maps, getLoginUserInfo().getToken());
+		maps.put(SignTools.REQUEST_FIELD_SIGN_INFO, signStr);
+	}
+
+	public static void signRequest(Map<String, String> maps, String token) {
+		String signStr = SignTools.getSignString(maps, token);
 		maps.put(SignTools.REQUEST_FIELD_SIGN_INFO, signStr);
 	}
 

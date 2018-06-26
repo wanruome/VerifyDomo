@@ -71,15 +71,18 @@ public class TestLogin extends WebAuthBaseTest {
 	}
 
 	public static void doLogin() {
-		HashMap<String, Object> map = new HashMap<>();
+		HashMap<String, String> map = new HashMap<>();
 		// /13656655336
 		map.put("account", "13355667799");
 		map.put("accountType", "1");
 		map.put("appId", "1000");
 		map.put("uuid", BASE_UUID);
+		map.put("uuidEncrypt", "3DES");
 		map.put("pwdEncrypt", pwdEncrypt);
 		map.put("pwd", getPassWord("111111", pwdEncrypt));
 		map.put("termType", "1");
+		map.put("timeStamp", System.currentTimeMillis() + "");
+		signRequest(map, PUBLIC_KEY_3DES);
 		// map.put("msgVerifyCode", "32456606");
 		// .setCookieSavePath(BASE_COOKIE_PATH)
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true).setUrl(BASE_URL + "app/userAccount/doLogin")

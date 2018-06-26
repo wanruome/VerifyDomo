@@ -26,11 +26,11 @@ public class TestRepatment extends WebAuthBaseTest {
 		// testBindCard();
 		// testUnBindCard();
 		// testCallBindCardResult();
-		// testUnBindCard();
+		testUnBindCard();
 		// testQueryProvinceCity();
 		// testCallQrCode();
 		// testQueryOrders();
-		testDoQueryBindCards();
+		// testDoQueryBindCards();
 		// testQueryAllCitys();
 	}
 
@@ -64,7 +64,8 @@ public class TestRepatment extends WebAuthBaseTest {
 
 	public static void testUnBindCard() {
 		Map<String, String> map = createRequestMap(true);
-		map.put("sequenceNo", "100010");
+		map.put("cardIndex", "100010");
+		map.put("timeStamp", System.currentTimeMillis() + "");
 		signRequest(map);
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
 				.setUrl(BASE_URL + "app/repayment/doUnBindCard").setRequestBody(getRequestBody(map))
@@ -75,6 +76,7 @@ public class TestRepatment extends WebAuthBaseTest {
 	public static void testCallQrCode() {
 		Map<String, String> map = createRequestMap(true);
 		map.put("cardIndex", "100010");
+		map.put("timeStamp", System.currentTimeMillis() + "");
 		signRequest(map);
 		ResponseData data = new DataOKHttp().setPost(true).setDebug(true)
 				.setUrl(BASE_URL + "app/repayment/doCallQrcode").setRequestBody(getRequestBody(map))
